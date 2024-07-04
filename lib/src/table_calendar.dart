@@ -82,6 +82,8 @@ class TableCalendar<T> extends StatefulWidget {
   /// ```
   final Map<CalendarFormat, String> availableCalendarFormats;
 
+  final Widget? underHeaderWidget;
+
   /// Determines the visibility of calendar header.
   final bool headerVisible;
 
@@ -260,6 +262,7 @@ class TableCalendar<T> extends StatefulWidget {
     this.onPageChanged,
     this.onFormatChanged,
     this.onCalendarCreated,
+    this.underHeaderWidget,
   })  : assert(availableCalendarFormats.keys.contains(calendarFormat)),
         assert(availableCalendarFormats.length <= CalendarFormat.values.length),
         assert(weekendDays.isNotEmpty
@@ -476,6 +479,7 @@ class _TableCalendarState<T> extends State<TableCalendar<T>> {
               );
             },
           ),
+        widget.underHeaderWidget ?? SizedBox.shrink(),
         Flexible(
           flex: widget.shouldFillViewport ? 1 : 0,
           child: TableCalendarBase(
